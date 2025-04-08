@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>compressor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center text-success">Compressor Machine Booking</h2>
+    
+        <form id="jcbBookingForm">
+          <div class="mb-3">
+            <label for="customerName" class="form-label">Customer Name</label>
+            <input type="text" class="form-control" id="customerName" required>
+          </div>
+    
+          <div class="mb-3">
+            <label for="location" class="form-label">Location(सेवा केवल होशंगाबाद जिले में उपलब्ध)</label>
+            <input type="text" class="form-control" id="location" required>
+          </div>
+    
+    
+          <div class="mb-3">
+            <label for="quantity" class="form-label">Number of Boring(ट्यूब और नलकूप की संख्या )</label>
+            <input type="number" class="form-control" id="quantity" placeholder="Number" required>
+          </div>
+    
+          <button type="submit" class="btn btn-primary">Get Quotation</button>
+        </form>
+    
+        <div id="quotationResult" class="mt-4"></div>
+      </div>
+      <div class="alert alert-primary" role="alert">
+        ज्यादा जानकारी के लिए संपर्क करें- <br>
+    
+        मोबाइल नंबर-9753762453
+      </div>
+      <div class="text-center mt-4">
+        <button type="button" id="bookbtn" class="btn btn-primary btn-lg">Book Online</button>
+      </div>
+    
+    
+
+      <script>
+        document.getElementById('jcbBookingForm').addEventListener('submit', function (e) {
+          e.preventDefault();
+      
+          const name = document.getElementById('customerName').value;
+          const location = document.getElementById('location').value;
+          const qty = parseInt(document.getElementById('quantity').value);
+      
+          const rate = 4000; // Compressor Machine Rate per boring
+          const total = qty * rate;
+      
+          const resultHTML = `
+            <div class="alert alert-success">
+              <h4>Quotation Summary</h4>
+              <strong>Customer Name:</strong> ${name}<br>
+              <strong>Location:</strong> ${location}<br>
+              <strong>Number of Boring:</strong> ${qty}<br>
+              <strong>Rate:</strong> ₹${rate} per boring<br>
+              <strong>Total Amount:</strong> ₹${total}
+            </div>
+          `;
+      
+          document.getElementById('quotationResult').innerHTML = resultHTML;
+        });
+      </script>
+      
+</body>
+</html>

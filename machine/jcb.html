@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JCB Booking</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="jcb.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="mb-4 text-center text-success">JCB Machine Booking</h2>
+
+    <form id="jcbBookingForm">
+      <div class="mb-3">
+        <label for="customerName" class="form-label">Customer Name</label>
+        <input type="text" class="form-control" id="customerName" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="location" class="form-label">Location(सेवा केवल होशंगाबाद जिले में उपलब्ध)</label>
+        <input type="text" class="form-control" id="location" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="purpose" class="form-label">Purpose</label>
+        <select class="form-select" id="purpose" required>
+          <option value="">-- Select Purpose --</option>
+          <option value="hourly">घंटे के हिसाब से</option>
+          <option value="boring">बोरिंग के लिए गड्ढा </option>
+          <option value="trolley">ट्रॉली लोडिंग के लिए</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="quantity" class="form-label">Hours / Trolleys / Boring Gadda</label>
+        <input type="number" class="form-control" id="quantity" placeholder="Number" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Get Quotation</button>
+    </form>
+
+    <div id="quotationResult" class="mt-4"></div>
+  </div>
+  <div class="alert alert-primary" role="alert">
+    ज्यादा जानकारी के लिए संपर्क करें- <br>
+
+    मोबाइल नंबर-8094496762
+  </div>
+  <div class="text-center mt-4">
+    <button type="button" id="bookbtn" class="btn btn-primary btn-lg">Book Online</button>
+  </div>
+  
+
+  <script>
+    document.getElementById('jcbBookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+  
+      const name = document.getElementById('customerName').value;
+      const location = document.getElementById('location').value;
+      const purpose = document.getElementById('purpose').value;
+      const date = document.getElementById('date').value;
+      const qty = parseInt(document.getElementById('quantity').value);
+  
+      let rate = 0;
+  
+      if (purpose === 'hourly') {
+        rate = 1200;
+      } else if (purpose === 'boring') {
+        rate = 3500;
+      } else if (purpose === 'trolley') {
+        rate = 150;
+      }
+  
+      const total = qty * rate;
+  
+      document.getElementById('quotationResult').innerHTML = `
+        <div class="alert alert-success">
+          <strong>Quotation:</strong><br>
+          Name: ${name}<br>
+          Location: ${location}<br>
+          Purpose: ${purpose}<br>
+          Date: ${date}<br>
+          Quantity: ${qty}<br>
+          Rate: ₹${rate} per unit<br>
+          <strong>Total: ₹${total}</strong>
+        </div>
+      `;
+    });
+  </script>
+  
+</body>
+</html>

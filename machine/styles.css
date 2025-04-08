@@ -1,0 +1,27 @@
+body {
+    padding: 30px;
+    background-color: #f8f9fa;
+  }
+  
+  .machine-card {
+    cursor: pointer;
+    transition: transform 0.2s;
+
+  }
+
+  .card-img-top {
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .machine-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .quotation-box {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+  }
+  
